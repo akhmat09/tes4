@@ -13,9 +13,7 @@ import org.hibernate.service.ServiceRegistry;
 public class Util {
     private SessionFactory sessionFactory;
 
-    public Util() {
-        getSessionFactory();
-    }
+
 
 
     public SessionFactory getSessionFactory() {
