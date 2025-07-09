@@ -46,9 +46,6 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery("DROP TABLE IF EXISTS users").executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             throw new RuntimeException("Failed to drop users table", e);
         }
     }
@@ -62,9 +59,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.persist(user);
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+
             throw new RuntimeException("Failed to save user: " + name + " " + lastName, e);
         }
     }
@@ -80,9 +75,7 @@ public class UserDaoHibernateImpl implements UserDao {
             }
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+
             throw new RuntimeException("Failed to remove user with id: " + id, e);
         }
     }
@@ -104,9 +97,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createNativeQuery("TRUNCATE TABLE users").executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+
             throw new RuntimeException("Failed to clean users table", e);
         }
     }
